@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Goalie Shot Tracker</string>
+    <string name="main_new_game">New Game</string>
+    <string name="main_continue_game">Continue</string>
+    <string name="main_player_stats">Player Stats</string>
+    <string name="main_exit">Exit</string>
+</resources>

@@ -6,4 +6,5 @@
     <string name="main_exit">Exit</string>
     <string name="game_shots">Shots</string>
     <string name="game_goal">Goal</string>
+    <string name="game_goalie_image">Goalie</string>
 </resources>

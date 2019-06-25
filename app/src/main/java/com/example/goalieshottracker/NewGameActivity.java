@@ -1,8 +1,11 @@
 package com.example.goalieshottracker;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
@@ -15,20 +18,39 @@ import android.widget.ImageView;
 public class NewGameActivity extends AppCompatActivity {
 
 
-private static final String DEBUG_TAG = "Gestures";
+    private static final String DEBUG_TAG = "Gestures";
+    Canvas canvas;
+    ImageView goalie;
+    Bitmap bitmap;
+    Paint paint;
+    Bitmap bmOverlay;
     private GestureDetectorCompat mDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
-        ImageView goalie = findViewById(R.id.imageView);
+        goalie = findViewById(R.id.imageView);
         Log.d("Image", goalie.toString());
+
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.goalie_clip_art).copy(Bitmap.Config.ARGB_8888, true);
+        bmOverlay = Bitmap.createBitmap(bitmap.getWidth(),
+                bitmap.getHeight(),
+                bitmap.getConfig());
+        paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setStrokeWidth(10);
+        paint.setColor(Color.BLACK);
+        canvas = new Canvas(bmOverlay);
+        goalie.setImageBitmap(bmOverlay);
+        canvas.drawBitmap(bitmap, new Matrix(), null);
+
         mDetector = new GestureDetectorCompat(this, new MyGestureListener());
     }
 
+
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event) {
         this.mDetector.onTouchEvent(event);
         return super.onTouchEvent(event);
     }
@@ -38,14 +60,20 @@ private static final String DEBUG_TAG = "Gestures";
 
         @Override
         public boolean onDown(MotionEvent event) {
-            Log.d(DEBUG_TAG,"onDown: " + event.toString());
+            Log.d(DEBUG_TAG, "onDown: " + event.toString());
             return true;
         }
 
+        @SuppressLint("ResourceAsColor")
         @Override
         public boolean onSingleTapConfirmed(MotionEvent event) {
             Log.d(DEBUG_TAG, "onTap: " + event.toString());
-            Log.d("Marlan", "tap tap");
+            //cv.drawCircle(event.getX(), event.getY(), 20, paint);
+            canvas.drawCircle(event.getX(),event.getY(),35 ,paint);
+            goalie.setImageBitmap(bmOverlay);
+
+
+            Log.d("Marlan", String.valueOf(event.getX()));
             return true;
         }
     }

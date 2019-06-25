@@ -1,26 +1,20 @@
 package com.example.goalieshottracker;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.widget.ImageView;
 
 public class NewGameActivity extends AppCompatActivity {
 
 
     private static final String DEBUG_TAG = "Gestures";
     Canvas canvas;
-    ImageView goalie;
+    DrawableImageView goalie;
     Bitmap bitmap;
     Paint paint;
     Bitmap bmOverlay;
@@ -37,19 +31,13 @@ public class NewGameActivity extends AppCompatActivity {
         bmOverlay = Bitmap.createBitmap(bitmap.getWidth(),
                 bitmap.getHeight(),
                 bitmap.getConfig());
-        paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(10);
-        paint.setColor(Color.BLACK);
-        canvas = new Canvas(bmOverlay);
-        goalie.setImageBitmap(bmOverlay);
-        canvas.drawBitmap(bitmap, new Matrix(), null);
+        goalie.setNewImage(bmOverlay, bitmap);
 
-        mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+        //mDetector = new GestureDetectorCompat(this, new MyGestureListener());
     }
 
 
-    @Override
+    /*@Override
     public boolean onTouchEvent(MotionEvent event) {
         this.mDetector.onTouchEvent(event);
         return super.onTouchEvent(event);
@@ -76,7 +64,8 @@ public class NewGameActivity extends AppCompatActivity {
             Log.d("Marlan", String.valueOf(event.getX()));
             return true;
         }
-    }
+    }*/
+
 }
 
 

@@ -1,12 +1,15 @@
-package com.example.goalieshottracker;
+package com.brando.goalieshottracker;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 /**
+ * Generates a splash screen
+ *
  * @author mgovender
  */
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     @Override

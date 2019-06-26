@@ -1,11 +1,14 @@
-package com.example.goalieshottracker;
+package com.brando.goalieshottracker;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+
+/**
+ * @author mgovender
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,9 +20,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    /** Called when the user taps the New Game button */
+    /**
+     * Called when the user taps the New Game button
+     */
     public void newGame(View view) {
-        Intent intent = new Intent(this,NewGameActivity.class);
+        Intent intent = new Intent(this, NewGameActivity.class);
         Log.d(TAG, "newGame: " + intent);
         startActivity(intent);
     }

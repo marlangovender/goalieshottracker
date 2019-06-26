@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.example.goalieshottracker.DrawableImageView
+    <com.brando.goalieshottracker.DrawableImageView
         android:id="@+id/imageView"
         android:layout_width="347dp"
         android:layout_height="433dp"

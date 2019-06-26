@@ -1,4 +1,4 @@
-package com.example.goalieshottracker;
+package com.brando.goalieshottracker;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,8 +10,13 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class DrawableImageView extends android.support.v7.widget.AppCompatImageView implements View.OnTouchListener
-{
+/**
+ * Creates an ImageView with onTouch listener enabled
+ *
+ * @author mgovender
+ */
+
+public class DrawableImageView extends android.support.v7.widget.AppCompatImageView implements View.OnTouchListener {
     float downx = 0;
     float downy = 0;
     float upx = 0;
@@ -21,28 +26,42 @@ public class DrawableImageView extends android.support.v7.widget.AppCompatImageV
     Paint paint;
     Matrix matrix;
 
-    public DrawableImageView(Context context)
-    {
+    /**
+     * @param context
+     */
+    public DrawableImageView(Context context) {
         super(context);
         setOnTouchListener(this);
     }
 
-    public DrawableImageView(Context context, AttributeSet attrs)
-    {
+    /**
+     * @param context
+     * @param attrs
+     */
+    public DrawableImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setOnTouchListener(this);
     }
 
+    /**
+     * @param context
+     * @param attrs
+     * @param defStyleAttr
+     */
     public DrawableImageView(Context context, AttributeSet attrs,
-                             int defStyleAttr)
-    {
+                             int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setOnTouchListener(this);
     }
 
-    public void setNewImage(Bitmap alteredBitmap, Bitmap bmp)
-    {
-        canvas = new Canvas(alteredBitmap );
+    /**
+     * Add mutable image to canvas
+     *
+     * @param alteredBitmap
+     * @param bmp
+     */
+    public void setNewImage(Bitmap alteredBitmap, Bitmap bmp) {
+        canvas = new Canvas(alteredBitmap);
         paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setStrokeWidth(10);
@@ -54,9 +73,15 @@ public class DrawableImageView extends android.support.v7.widget.AppCompatImageV
 
     }
 
+    /**
+     * Trigger ontouch event
+     *
+     * @param v
+     * @param event
+     * @return
+     */
     @Override
-    public boolean onTouch(View v, MotionEvent event)
-    {
+    public boolean onTouch(View v, MotionEvent event) {
         int action = event.getAction();
 
         switch (action) {
@@ -69,17 +94,16 @@ public class DrawableImageView extends android.support.v7.widget.AppCompatImageV
             case MotionEvent.ACTION_UP:
                 upx = getPointerCoords(event)[0];//event.getX();
                 upy = getPointerCoords(event)[1];//event.getY();
-                canvas.drawCircle(upx,upy,55 ,paint);
+                canvas.drawCircle(upx, upy, 55, paint);
                 invalidate();
                 break;
         }
         return true;
     }
 
-    final float[] getPointerCoords(MotionEvent e)
-    {
+    final float[] getPointerCoords(MotionEvent e) {
         final int index = e.getActionIndex();
-        final float[] coords = new float[] { e.getX(index), e.getY(index) };
+        final float[] coords = new float[]{e.getX(index), e.getY(index)};
         Matrix matrix = new Matrix();
         getImageMatrix().invert(matrix);
         matrix.postTranslate(getScrollX(), getScrollY());

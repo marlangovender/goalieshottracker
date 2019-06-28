@@ -7,4 +7,10 @@
     <string name="game_shots">Shots</string>
     <string name="game_goal">Goal</string>
     <string name="game_goalie_image">Goalie</string>
+    <string name="text_shots">text_shots</string>
+    <string name="text_goals">text_goals</string>
+    <string name="text_save_percentage">text_save_percentage</string>
+    <string name="row_shots_on_net">Shots on Net</string>
+    <string name="row_goals_against">Goals against</string>
+    <string name="row_save_percentage">Save %</string>
 </resources>

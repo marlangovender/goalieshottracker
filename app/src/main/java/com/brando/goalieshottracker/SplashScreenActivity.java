@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Generates a splash screen
+ * Generates a shot_tracker_splash_screen
  *
  * @author mgovender
  */

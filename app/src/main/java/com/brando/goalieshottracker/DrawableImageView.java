@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import static com.brando.goalieshottracker.NewGameActivity.incrementShots;
+
 /**
  * Creates an ImageView with onTouch listener enabled
  *
@@ -25,6 +27,7 @@ public class DrawableImageView extends android.support.v7.widget.AppCompatImageV
     Canvas canvas;
     Paint paint;
     Matrix matrix;
+    int color = Color.BLACK;
 
     /**
      * @param context
@@ -65,11 +68,15 @@ public class DrawableImageView extends android.support.v7.widget.AppCompatImageV
         paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setStrokeWidth(10);
-        paint.setColor(Color.BLACK);
         matrix = new Matrix();
         canvas.drawBitmap(bmp, matrix, paint);
 
         setImageBitmap(alteredBitmap);
+
+    }
+
+    public void setPaintColor (String c) {
+        color = (c=="red") ?  Color.RED : Color.BLACK;
 
     }
 
@@ -94,7 +101,13 @@ public class DrawableImageView extends android.support.v7.widget.AppCompatImageV
             case MotionEvent.ACTION_UP:
                 upx = getPointerCoords(event)[0];//event.getX();
                 upy = getPointerCoords(event)[1];//event.getY();
+                paint.setColor(color);
                 canvas.drawCircle(upx, upy, 55, paint);
+                if (color == Color.RED) {
+                    incrementShots("goal");
+                } else {
+                    incrementShots("shot");
+                }
                 invalidate();
                 break;
         }
